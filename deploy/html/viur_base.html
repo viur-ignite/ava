@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{%- from "macros/utils.macro" import button, callItem, itemImage -%}
+{%- set adminConf = getAdminConf()|parseJSON -%}
 
 {%- set lang = getLanguage() -%}
 
@@ -18,6 +20,7 @@
 	{#- Set default css page name to index. -#}
 	{%- set pageContent="index" -%}
 {%- endif -%}
+
 
 <html>
 <head lang="{{ lang }}">
@@ -84,49 +87,72 @@
 </head>
 <body>
 
-	<article class="wrap">
-		<div class="bind flex">
+	{%- block applicationFrame %}
+		<div class="vi-application">
 
-			<article class="content {{pageContent}}" role="main"> {# name this content class after the page name AND function for better css addressing, e.g.: 'index', 'page_view view', 'product_list list' #}
-				<header>
-					{% block header %}
-						{# put your header here #}
-						<section class="section">
-							<nav class="bar">
-								<div class="bar-group bar-group--left bar-group--nav">
-									<a class="bar-link" href="https://docs.viur.is/latest/start.html" target="_blank">Documentation</a>
-								</div>
-								<div class="bar-group bar-group--center bar-group--nav">
-									<div class="bar-item">
-										<a class="github-button" href="https://github.com/viur-framework/server" data-icon="octicon-star" data-show-count="true" aria-label="Star viur-framework/server on GitHub">Star</a>
-									</div>
-									<div class="bar-item">
-										<a class="github-button" href="https://github.com/viur-framework/server/subscription" data-icon="octicon-eye" data-show-count="true" aria-label="Watch viur-framework/server on GitHub">Watch</a>
-									</div>
-								</div>
-								<div class="bar-group bar-group--right bar-group--nav">
-									<a class="bar-link" href="{{ getHostUrl() }}/">Welcome</a>
-									<a class="bar-link" href="{{ getHostUrl() }}/s/gettingstarted">Getting started</a>
-									<a class="bar-link" href="{{ getHostUrl() }}/vi">Vi</a>
-								</div>
-							</nav>
-						</section>
-					{% endblock header %}
+			{% block topBar %}
+				<header class="vi-topbar bar">
+					<div class="vi-tb-left bar-group bar-group--left">
+
+						<a href="/" class="vi-tb-logo">
+							{{ embedSvg('logo-vi') }}
+						</a>
+
+						<h1 class="vi-tb-title">
+							<a href="/">
+							{{_('vi_name')}}
+							</a>
+						</h1>
+
+					</div>
+
+					<nav class="vi-tb-right bar-group bar-group--right">
+
+						<div class="input-group">
+						</div>
+					</nav>
 				</header>
+			{% endblock topBar %}
 
-				{% block content %}
-					{# put your content here #}
-				{% endblock content %}
-			</article><!-- content -->
+			{% block mainFrame %}
+				<div class="vi-main-frame">
+					{% block managerFrame %}
+						<nav class="vi-manager-frame js-vi-manager-frame">
+							<div class="vi-modulelist list js-pin-list">
+								<div class="list-separator list-separator--accordion js-list-separator--accordion is-active">{{ embedSvg('icon-bookmark-delete') }}<span class="list-separator-content">Pinwand</span>{{ embedSvg('icon-arrow-left') }}</div>
+							</div>
+							<div class="vi-modulelist list">
+								<div class="list-separator list-separator--accordion js-list-separator--accordion is-active">{{ embedSvg('icon-pdf-file') }}<span class="list-separator-content">Inhaltsseiten</span>{{ embedSvg('icon-arrow-left') }}</div>
+								{%- for key,module in adminConf["modules"].items() -%}
+									{% set image = itemImage(type="inline", src=module["svg"]) %}
+									{%- set data = {"key": "content-"+module["key"]|shortKey|string} -%}
 
-			<footer>
-				{% block footer %}
-					{# put your footer here #}
-				{% endblock footer %}
-			</footer>
+									{% if module["handler"] %}
+										{% set url = "/"+key+"/"+module["handler"] %}
+									{% endif %}
 
+									{% call callItem(headline=module["name"], image=image, data=data, url=url) %}
+										<span class="item-pin js-item-pin">
+											{{ embedSvg('icon-pin') }}
+										</span>
+									{% endcall %}
+								{% endfor %}
+
+							</div>
+						</nav>
+					{% endblock managerFrame %}
+
+					{% block viewerFrame %}
+						<div class="vi-viewer-frame" role="main">
+
+						</div>
+					{% endblock viewerFrame %}
+				</div>
+			{% endblock mainFrame %}
+
+			</div>
 		</div>
-	</article>
+	{%- endblock applicationFrame %}
 
 	{% block additionalFooter %}
 		{# use additionalFooter for less important template specific JS or CSS file imports. #}

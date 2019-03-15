@@ -1,7 +1,7 @@
 {% extends "viur_base.html" %}
 {% from "macros/skelview.html" import SkelView %}
 
-{% block content %}
+{% block viewerFrame %}
 	{% if not skellist %}
 		<h1 class="headline">{{ moduleName() }} has no entries</h1>
 	{% else %}
@@ -23,4 +23,4 @@
 
 	<a class="btn btn--primary" href="/{{ moduleName() }}/add">Add new entry</a>
 
-{% endblock %}
+{% endblock viewerFrame %}

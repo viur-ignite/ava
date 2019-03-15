@@ -1,0 +1,35 @@
+@charset "UTF-8";
+/* Modullist */
+
+// Prefixes and objects:
+// .vi-modulelist-
+// .vi-ml-
+
+@borderColorModulelist: #ebebea;
+
+.vi-modulelist {}
+
+.vi-modulepipe {
+  height: 100%;
+  position: absolute;
+  right: 0;
+  width: 10px;
+  background: transparent;
+  border-right: 1px solid @borderColorModulelist;
+  top: 0;
+  cursor: ew-resize;
+  transition: .3s ease all;
+
+  &:hover {
+    border-right: 2px solid @mainColor;
+  }
+}
+
+.vi-manager-frame.is-collapsed {
+  min-width: unset;
+  flex-basis: auto;
+  flex-grow: 0;
+  & .list-separator-content,
+  & .item-content {display: none;}
+  & .list {min-width: auto;}
+}
