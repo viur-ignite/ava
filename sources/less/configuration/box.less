@@ -1,0 +1,27 @@
+@charset "UTF-8";
+/* BOX */
+
+// Prefixes and objects:
+// .boxx-
+
+// FIXME: Will be .box in the future.
+
+.boxx {
+  .box(
+    @borderWidth: 1px;
+    @borderRadius:0;
+  );
+  &--hint {
+    .colorizeBox(
+    @color: @hintColor,
+    @shadow: @defaultShadow,
+    @shadowColor: @hintColor);
+  }
+  &--success {
+    .colorizeBox(
+      @color: @successColor,
+      @shadow: @defaultShadow,
+      @shadowColor: @hintColor);
+  }
+}
+

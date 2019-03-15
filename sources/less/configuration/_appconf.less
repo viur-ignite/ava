@@ -1,6 +1,6 @@
 @charset "UTF-8";
 // ---------------------------------------------------------------------------------------
-//  ViUR Base APPCONFIGURATION
+//    Vi 2  APPCONFIGURATION
 // ---------------------------------------------------------------------------------------
 
 // Opt-Ins
@@ -11,6 +11,15 @@
 @icon: true;
 @message: true;
 @table: true;
+
+// Initialize and configurate fundamental elements.
+
+@import "button";
+@import "message";
+
+@import "icon-complex";
+@import "item";
+@import "box";
 
 // Color and Shadow Sets
 @mainColor: #d00f1c; // The corporate color - defining most of the looks.
@@ -26,34 +35,45 @@
 
 // Font Stacks
 @bodyFonts: 'Source Sans Pro', 'Open Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; // Default font stack.
-@headFonts: 'Source Sans Pro', 'Open Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; // Fonts for headlines, blockquotes and alike.
+@headFonts: 'Source Sans Pro', 'Open Sans', sans-serif; // Fonts for headlines, blockquotes and alike.
 @monoFonts: 'Source Code Pro', Courier, monospace; // Fonts for code pieces.
 
+// Font Weights
+@fontWeightLight: 300;
+@fontWeightNormal: 400;
+@fontWeightBold: 700;
+
 // Font Sizes
-@fontSizeSmall: 16px;
-@fontSizeMedium: 17px;
-@fontSizeLarge: 19px;
-@fontSizeExtraLarge: 20px;
-@defaultLineHeight: 1.5;
+@defaultLineHeight: 1.3;
+@fontSizeSmall: 12px;
+@fontSizeMedium: 14px;
+@fontSizeLarge: 16px;
+@fontSizeExtraLarge: 18px;
 
 // Buttons and Forms
-@defaultPadding: .2em;
-@defaultMargin: .25em;
-@defaultBorderWidth: 1px;
-@defaultBorderRadius: 1px;
+@defaultPadding: 3px;
+@defaultMargin: 5px;
 @defaultShadow: 0;
 @defaultShadowColor: #000;
-@defaultInputColor:#fff;
+@defaultBorderWidth: 1px;
+@defaultBorderRadius: 0;
+
+// Items
+@itemBackgroundColor:#fff;
+
+@topbarHeight: 60px;
 
 // Spaces
 @outerSpace: 20px; // Space around objects, boxes etc.
 @innerSpace: 10px; // Space within objects: mostly paddings.
+@topSpace: 20px; // The distance between two sections.
 @bottomSpace: 20px; // The distance between two sections.
 @gridSpace: 20px; // Space between grid items.
 
 // Width, Height and Media Queries
-@pageWidth: 1400px; // max-width of the centered container.
-@paragraphWidth: 77ch; // max-width of text paragraphs: 77 characters.
+@pageWidth: 1500px; // max-width of the centered container.
+@sideNavMinWidth: 250px;
+@paragraphWidth: 720px; // max-width of text paragraphs.
 
 @breakSmall: 37.5em; // smart phones: 600px / 16px = 37.5em;
 @breakMedium: 56.25em; // tablets: 900px / 16px = 56.25em;

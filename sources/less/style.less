@@ -8,15 +8,17 @@
 // ViUR Ignite
 @import "ignite/ignite"; // reset, boiler plate and generic objects like buttons and forms.
 
-// Customize Ignite configuration:
-@import "foundation/appconf"; // Here you can configure the styling with global variables.
+// The framework:
+@import "framework/_framework"; // page wrappers.
 
-// Initialize generic Ignite objects:
-@import "generic/bar"; // bar.
-@import "generic/button"; // some classic buttons.
-@import "generic/icon"; // inline SVG icons.
-@import "generic/message"; // hints, errors, warnings etc.
+// Customize Ignite configuration:
+@import "configuration/_appconf"; // Here you can configure the styling with global variables.
+
+// Load generic elements.
+@import "elements/_elements";
 
 // Import your project specific objects here:
 @import "objects/thumbnail"; // picture thumbnails.
-@import "objects/grid"; // picture thumbnails.
+
+// Status
+@import "status/_status";

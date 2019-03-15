@@ -1,0 +1,38 @@
+@charset "UTF-8";
+/* BUTTONS */
+
+// Prefixes and objects:
+// .btn-
+// .btnGroup
+
+.item {
+  .item();
+  &--hint {
+    .colorizeItem(
+    @backgroundColor: lighten(@hintColor,35%),
+    @activeBackgroundColor: @hintColor,
+    @actionBackgroundColor: @hintColor);
+  }
+  &--success {
+    .colorizeItem(
+    @backgroundColor: lighten(@successColor,35%),
+    @activeBackgroundColor: @successColor,
+    @actionBackgroundColor: @successColor);
+  }
+  &-pin {
+    opacity: .1;
+    margin-right: @innerSpace;
+    & svg {
+      width: 1.2em;
+      height: 1.2em;
+    }
+    &.is-active {
+      color: @mainColor;
+      opacity: .5;
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
