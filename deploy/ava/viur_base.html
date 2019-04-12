@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+{%- from "macros/utils.macro" import button, callItem, itemImage -%}
+{%- set adminConf = getAdminConf()|parseJSON -%}
+
+{%- set lang = getLanguage() -%}
+
+{%- if not title -%}
+	{#- The default page title. Optimal length for search engines is 50-60 characters. -#}
+	{%- set title="ava-viur" -%}
+{%- endif -%}
+{%- if not metaDescr -%}
+	{#- The default meta description. The description should optimally be between 150-160 characters. -#}
+	{%- set metaDescr="default metaDescr" -%}
+{%- endif -%}
+{%- if not metaKeywords -%}
+	{#- Default meta keywords. Meta keywords have no effect on SEO whatsoever. Length is anywhere from 100 to 255 characters. -#}
+	{%- set metaKeywords="default metaKeywords" -%}
+{%- endif -%}
+{%- if not pageContent -%}
+	{#- Set default css page name to index. -#}
+	{%- set pageContent="index" -%}
+{%- endif -%}
+
+
+<html>
+<head lang="{{ lang }}">
+	<meta charset="utf-8">
+
+	<!-- Herzlich willkommen bei-->
+	<meta name="twitter:title" content="{{ title }}">
+	<meta property="og:title" content="{{ title }}">
+	<title>{{ title }}</title>
+
+	<!-- Descriptions -->
+	<meta name="description" lang="{{ lang }}" content="{{ metaDescr }}">
+	<meta name="twitter:description" content="{{ metaDescr }}">
+	<meta name="DC.Description" content="{{ metaDescr }}">
+	<meta property="og:description" content="{{ metaDescr }}">
+	<meta name="keywords" lang="{{ lang }}" content="{{ metaKeywords }}">
+
+	<!-- Diese Webseite ist ein viur Informationssystem. -->
+	<meta name="generator" content="www.viur.is">
+	<link type="text/plain" rel="author" href="/static/meta/humans.txt">
+	<meta name="author" content="Mausbrand Informationssysteme GmbH">{# FIXME! Insert page owner here. Will show up in open graph links. #}
+
+	<meta name="robots" content="noindex, nofollow">
+	{# <meta name="robots" content="index, follow"> #}
+
+	<meta property="og:type" content="website">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+	<!-- icons -->
+	<link rel="shortcut icon" href="/static/meta/favicon.png" type="image/png">
+
+	<!-- css -->
+	<link href="/static/css/style.min.css" rel="stylesheet">
+
+	<!-- iPhone -->
+	<link href="/static/meta/apple-touch-icon-precomposed.png" sizes="57x57" rel="apple-touch-icon">
+	<link href="/static/meta/apple-touch-icon-precomposed.png" sizes="57x57" rel="apple-touch-icon-precomposed">
+	<link href="/static/meta/apple-touch-startup-image-320x460.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+
+	<!-- iPhone (Retina) -->
+	<link href="/static/meta/apple-touch-icon-114x114-precomposed.png" sizes="114x114" rel="apple-touch-icon">
+	<link href="/static/meta/apple-touch-icon-114x114-precomposed.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+	<link href="/static/meta/apple-touch-startup-image-640x920.png" media="(device-width: 320px) and (device-height: 480px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+
+	<!-- iPhone 5 -->
+	<link href="/static/meta/apple-touch-startup-image-640x1096.png" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+
+	<!-- iPad -->
+	<link href="/static/meta/apple-touch-icon-72x72-precomposed.png" sizes="72x72" rel="apple-touch-icon">
+	<link href="/static/meta/apple-touch-icon-72x72-precomposed.png" sizes="72x72" rel="apple-touch-icon-precomposed">
+	<link href="/static/meta/apple-touch-startup-image-768x1004.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+	<link href="/static/meta/apple-touch-startup-image-748x1024.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+
+	<!-- iPad (Retina) -->
+	<link href="/static/meta/apple-touch-icon-144x144-precomposed.png" sizes="144x144" rel="apple-touch-icon">
+	<link href="/static/meta/apple-touch-icon-144x144-precomposed.png" sizes="144x144" rel="apple-touch-icon-precomposed">
+	<link href="/static/meta/apple-touch-startup-image-1536x2008.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: portrait) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+	<link href="/static/meta/apple-touch-startup-image-1496x2048.png" media="(device-width: 768px) and (device-height: 1024px) and (orientation: landscape) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+
+	{% block additionalHead %}
+		{# use additionalHead for important template specific JS or CSS file imports. #}
+	{% endblock %}
+
+</head>
+<body>
+
+	{%- block applicationFrame %}
+		<div class="vi-application">
+
+			{% block topBar %}
+				<header class="vi-topbar bar">
+					<div class="vi-tb-left bar-group bar-group--left">
+
+						<a href="/ava/" class="vi-tb-logo">
+							{{ embedSvg('logo-vi') }}
+						</a>
+
+						<h1 class="vi-tb-title">
+							<a href="/ava/">
+							{{_('vi_name')}} TEST
+							</a>
+						</h1>
+
+						{% block currentModule %}
+						{% endblock currentModule %}
+
+					</div>
+
+					<nav class="vi-tb-right bar-group bar-group--right">
+
+						<div class="input-group">
+						</div>
+					</nav>
+				</header>
+			{% endblock topBar %}
+
+			{% block mainFrame %}
+				<div class="vi-main-frame">
+					{% block managerFrame %}
+						<nav class="vi-manager-frame js-vi-manager-frame">
+							<div class="vi-modulelist list js-pin-list">
+								<div class="list-separator list-separator--accordion js-list-separator--accordion is-active">{{ embedSvg('icon-bookmark-delete') }}<span class="list-separator-content">Pinwand</span>{{ embedSvg('icon-arrow-left') }}</div>
+							</div>
+							<div class="vi-modulelist list">
+								<div class="list-separator list-separator--accordion js-list-separator--accordion is-active">{{ embedSvg('icon-pdf-file') }}<span class="list-separator-content">Inhaltsseiten</span>{{ embedSvg('icon-arrow-left') }}</div>
+								{%- for key,module in adminConf["modules"].items() -%}
+									{% set image = itemImage(type="icon", src=module["icon"]) %}
+									{%- set data = {"key": "content-"+module["key"]|shortKey|string} -%}
+
+									{% if module["handler"] %}
+										{% set url = "/ava/"+key+"/"+module["handler"] %}
+									{% endif %}
+
+									{% call callItem(headline=module["name"], image=image, data=data, url=url) %}
+										<span class="item-pin js-item-pin">
+											{{ embedSvg('icon-pin') }}
+										</span>
+									{% endcall %}
+								{% endfor %}
+
+							</div>
+						</nav>
+					{% endblock managerFrame %}
+
+					{% block viewerFrame %}
+						<div class="vi-viewer-frame" role="main">
+
+						</div>
+					{% endblock viewerFrame %}
+				</div>
+			{% endblock mainFrame %}
+
+			</div>
+		</div>
+	{%- endblock applicationFrame %}
+
+	{% block additionalFooter %}
+		{# use additionalFooter for less important template specific JS or CSS file imports. #}
+		<script async defer src="https://buttons.github.io/buttons.js"></script>
+	{% endblock %}
+
+
+	<!-- js -->
+	<script src="/static/js/jquery-3.2.1.min.js"></script>
+	<script src="/static/js/app.js"></script>
+
+</body>
+</html>

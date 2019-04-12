@@ -1,0 +1,45 @@
+{% macro button(name="Button", icon="icon-", url=None, target="_self", class=None, marker=None) %}
+	<{{ 'a' if url else 'button'}}{% if url %} href="{{ url }}" target="{{ target }}"{% endif %} class="btn{% if class %} {{ class }}{% endif %}">{{ embedSvg(icon) }} <span class="btn-name">{{ name }}</span>{% if marker %} <span class="marker">{{ marker }}</span>{% endif %}<{{ '/a' if url else '/button'}}>
+{% endmacro %}
+
+{% macro buildDataAttr(data={}) %}
+	{%- for key, value in data.items() if data %}
+		data-{{ key }}="{{ value }}"
+	{% endfor -%}
+{% endmacro %}
+
+{% macro callItem(headline="Headline", subline=None, image=None, hover=True, url=None, target="_self", action=None, class=None, marker=None, data={}) %}
+	<div class="item{% if hover %} has-hover{% endif %}{% if class %} {{ class }}{% endif %}" {{ buildDataAttr(data) }}>
+		<{{ 'a' if url else 'div'}}{% if url %} href="{{ url }}" target="{{ target }}"{% endif %} class="item-link">
+			{{ image if image }}
+			{% if headline or subline %}
+				<div class="item-content">
+					{% if headline %}<div class="item-headline">{{ headline }}{% if marker %} <span class="marker">{{ marker }}</span>{% endif %}</div>{% endif %}
+					{% if subline %}<div class="item-subline">{{ subline }}</div>{% endif %}
+				</div>
+			{% endif %}
+			{% if action %}
+				<button class="item-action">{{ action }}</button>
+			{% endif %}
+		<{{ '/a' if url else '/div'}}>
+		{{ caller() }}
+	</div>
+{% endmacro %}
+
+{% macro itemImage(src="logo-vi", type="icon", complex=True, alt=None, class=None) %}
+	<div class="item-image">
+		{% if complex %}
+			<i class="i{% if class %} {{ class }}{% endif %}"{% if alt and type=="icon" %} title="{{ alt }}"{% endif %}>
+		{% endif %}
+			{% if type=="icon" %}
+				{{ embedSvg(src) }}
+			{% elif type=="image" %}
+				<img src="{{ src }}"{% if class and not complex %} class="{{ class }}"{% endif %}{% if alt %} alt="{{ alt }}"{% endif %}>
+			{% elif type=="inline" %}
+				{{ src }}
+			{% endif %}
+		{% if complex %}
+			</i>
+		{% endif %}
+	</div>
+{% endmacro %}
