@@ -1,26 +1,47 @@
 {% extends "viur_base.html" %}
 {% from "macros/skelview.html" import SkelView %}
 
+{% block currentModule %}
+	<div class="vi-tb-currentmodul item">
+		<div class="item-image">
+			<i class="i">
+				{{ embedSvg(src) }}
+			</i>
+		</div>
+		<div class="item-content"></div>
+	</div>
+{% endblock currentModule %}
+
 {% block viewerFrame %}
-	{% if not skellist %}
-		<h1 class="headline">{{ moduleName() }} has no entries</h1>
-	{% else %}
-		<h1 class="headline">{{ moduleName() }} has {{ skellist|length }} entries</h1>
-		<ol>
-			{% for skel in skellist %}
-				<li>
-					{{ SkelView(skel) }}
+	<div class="vi-viewer-frame" role="main">
+		<div class="vi-viewer-pane has-single-child is-active">
+			<div class="vi-widget vi-widget--list">
+				<div class="vi-actionbar bar">
+					<a class="btn btn--primary " href="/{{ moduleName() }}/add">Add new entry</a>
+				</div>
+				<div class="vi-widget-content">
+					{% if not skellist %}
+						<div class="popup popup--center popup--local msg emptynotification is-active">
+							Es wurden keine Einträge gefunden
+						</div>
+					{% else %}
+						<h1 class="headline">{{ moduleName() }} has {{ skellist|length }} entries</h1>
+						<ol>
+							{% for skel in skellist %}
+								<li>
+									{{ SkelView(skel) }}
 
-					<div>
-						<a class="btn btn--primary" href="/{{ moduleName() }}/view/{{ skel.key }}">View</a>
-						<a class="btn btn--edit" href="/{{ moduleName() }}/edit/{{ skel.key }}">Edit</a>
-						<a class="btn btn--danger" href="/{{ moduleName() }}/view/{{ skel.key }}?style=delete">Delete</a>
-					</div>
-				</li>
-			{% endfor %}
-		</ol>
-	{% endif %}
-
-	<a class="btn btn--primary" href="/{{ moduleName() }}/add">Add new entry</a>
-
+									<div>
+										<a class="btn btn--primary" href="/{{ moduleName() }}/view/{{ skel.key }}">View</a>
+										<a class="btn btn--edit" href="/{{ moduleName() }}/edit/{{ skel.key }}">Edit</a>
+										<a class="btn btn--danger" href="/{{ moduleName() }}/view/{{ skel.key }}?style=delete">Delete</a>
+									</div>
+								</li>
+							{% endfor %}
+						</ol>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock viewerFrame %}

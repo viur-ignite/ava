@@ -34,6 +34,15 @@
 @failColor: #f44336; // Red
 @hintColor: #1da7e0; // Blue
 
+@focusoddcolor: fadeout(@mainColor, 30%);
+@focusevencolor: lighten(fadeout(@mainColor, 30%), 10%);
+
+@focusselectionoddcolor: fadeout(@mainColor, 50%);
+@focusselectionevencolor: lighten(fadeout(@mainColor, 50%), 10%);
+
+@selectionoddcolor: fadeout(@mainColor, 80%);
+@selectionevencolor: lighten(fadeout(@mainColor, 80%), 10%);
+
 // Font Stacks
 @bodyFonts: 'Source Sans Pro', 'Open Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; // Default font stack.
 @headFonts: 'Source Sans Pro', 'Open Sans', sans-serif; // Fonts for headlines, blockquotes and alike.
