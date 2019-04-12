@@ -26,7 +26,7 @@
 	</div>
 {% endmacro %}
 
-{% macro itemImage(src="logo-duschtec", type="icon", complex=True, alt=None, class=None) %}
+{% macro itemImage(src="logo-vi", type="icon", complex=True, alt=None, class=None) %}
 	<div class="item-image">
 		{% if complex %}
 			<i class="i{% if class %} {{ class }}{% endif %}"{% if alt and type=="icon" %} title="{{ alt }}"{% endif %}>

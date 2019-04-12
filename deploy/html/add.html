@@ -9,11 +9,15 @@
 
 {% extends "viur_base.html" %}
 
-{% block content %}
-	<h1 class="headline">Add entry to {{ moduleName() }}</h1>
+{% block viewerFrame %}
+	<div class="vi-viewer-frame" role="main">
+		<div class="vi-viewer-pane has-single-child is-active">
+			<h1 class="headline">Add entry to {{ moduleName() }}</h1>
 
-	<form action="/{{ moduleName() }}/add" method="POST">
-		{{ renderEditForm(skel) }}
-		<input class="btn btn--primary" type="submit">
-	</form>
-{% endblock %}
+			<form action="/{{ moduleName() }}/add" method="POST">
+				{{ renderEditForm(skel) }}
+				<input class="btn btn--primary" type="submit">
+			</form>
+		</div>
+	</div>
+{% endblock viewerFrame %}

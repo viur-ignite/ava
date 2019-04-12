@@ -127,7 +127,7 @@
 							<div class="vi-modulelist list">
 								<div class="list-separator list-separator--accordion js-list-separator--accordion is-active">{{ embedSvg('icon-pdf-file') }}<span class="list-separator-content">Inhaltsseiten</span>{{ embedSvg('icon-arrow-left') }}</div>
 								{%- for key,module in adminConf["modules"].items() -%}
-									{% set image = itemImage(type="inline", src=module["svg"]) %}
+									{% set image = itemImage(type="icon", src=module["icon"]) %}
 									{%- set data = {"key": "content-"+module["key"]|shortKey|string} -%}
 
 									{% if module["handler"] %}
