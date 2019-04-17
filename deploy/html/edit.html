@@ -9,11 +9,31 @@
 
 {% extends "viur_base.html" %}
 
-{% block content %}
-	<h1 class="headline">Edit entry {{ skel.value.key }} of {{ moduleName() }}</h1>
+{% block currentModule %}
+	<div class="vi-tb-currentmodul item">
+		<div class="item-image">
+			<i class="i">
+				{{ embedSvg('test') }}
+			</i>
+		</div>
+		<div class="item-content">
+			<div class="item-subline">{{ moduleName() }}</div>
+			<div class="item-headline">{{ skel["value"]["name"] if skel["value"] and skel["value"]["name"] }}</div>
 
-	<form action="{{ moduleName() }}/edit" method="POST">
-		{{ renderEditForm(skel) }}
-		<input class="btn btn--primary" type="submit">
-	</form>
-{% endblock %}
+		</div>
+
+	</div>
+{% endblock currentModule %}
+
+{% block viewerFrame %}
+	<div class="vi-viewer-frame" role="main">
+		<div class="vi-viewer-pane has-single-child is-active">
+			<form action="{{ moduleName() }}/edit" method="POST">
+				<div class="vi-actionbar bar">
+					<input class="btn btn--primary" type="submit">
+				</div>
+				{{ renderEditForm(skel) }}
+			</form>
+		</div>
+	</div>
+{% endblock viewerFrame %}
