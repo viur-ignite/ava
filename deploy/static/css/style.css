@@ -2797,7 +2797,7 @@ a.item:focus,
   opacity: 1;
 }
 
-.boxx {
+.box {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2813,7 +2813,7 @@ a.item:focus,
   box-shadow: none;
 }
 
-.boxx-head {
+.box-head {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2830,17 +2830,17 @@ a.item:focus,
   border-top-right-radius: 0;
 }
 
-.boxx-head > *:first-child {
+.box-head > *:first-child {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
 
-.boxx-body {
+.box-body {
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-.boxx-foot:not(:empty) {
+.box-foot:not(:empty) {
   z-index: 201;
   margin-top: -1px;
   border-top: 1px solid #ccc;
@@ -2848,43 +2848,43 @@ a.item:focus,
   flex-shrink: 0;
 }
 
-.boxx--content {
+.box--content {
   padding: 10px;
 }
 
-.boxx--content-wide {
+.box--content-wide {
   padding: 20px;
 }
 
-.boxx--hint {
+.box--hint {
   background-color: #d0edf9;
   border-color: #1da7e0;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 
-.boxx--hint .box-head {
+.box--hint .box-head {
   background-color: #76caed;
   border-color: #1da7e0;
 }
 
-.boxx--hint .box-foot:not(:empty) {
+.box--hint .box-foot:not(:empty) {
   border-top-color: #1da7e0;
 }
 
-.boxx--success {
+.box--success {
   background-color: #d1eccf;
   border-color: #4cad42;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 
-.boxx--success .box-head {
+.box--success .box-head {
   background-color: #8cd085;
   border-color: #4cad42;
 }
 
-.boxx--success .box-foot:not(:empty) {
+.box--success .box-foot:not(:empty) {
   border-top-color: #4cad42;
 }
 
@@ -4036,8 +4036,6 @@ td img ~ span {
 
 .vi-tb-currentmodul {
   position: relative;
-  text-align: center;
-  float: left;
   width: auto;
   margin-top: 10px;
 }
@@ -4045,7 +4043,6 @@ td img ~ span {
 .vi-tb-currentmodul img {
   width: 32px;
   height: 32px;
-  float: left;
   margin: -5px 15px 0;
 }
 
@@ -4285,8 +4282,6 @@ td img ~ span {
 
 .vi-tb-currentmodul {
   position: relative;
-  text-align: center;
-  float: left;
   width: auto;
   margin-top: 10px;
 }

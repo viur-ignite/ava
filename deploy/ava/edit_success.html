@@ -10,7 +10,7 @@
 {% extends "viur_base.html" %}
 {% from "macros/skelview.html" import SkelView %}
 
-{% block content %}
+{% block viewerFrame %}
 	<h1 class="headline">{{ moduleName() }}: Entry {{ skel.key }} successfully edited</h1>
 
 	<div class="alertGroup">
@@ -26,5 +26,5 @@
 	</div>
 
 	{{ SkelView(skel) }}
-{% endblock %}
+{% endblock viewerFrame %}
 

@@ -31,7 +31,7 @@ from server import conf, securityheaders
 #
 
 #conf["viur.forceSSL"] = True
-#conf["viur.disableCache"] = True
+conf["viur.disableCache"] = True
 
 # ------------------------------------------------------------------------------
 # Language-specific configuration

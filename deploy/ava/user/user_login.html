@@ -2,18 +2,18 @@
 {%- set req = requestParams() -%}
 
 
-{% block applicationFrame %}
+{% block content %}
 	<h1 class="headline">Login</h1>
 
 	{% if loginFailed %}
 		<div class="msg msg--error has-icon">
 			{{ embedSvg("icon-cross") }}
 			<h3 class="msg-headline">Login failed!</h3>
-			<p>Username or Password was wrong. Please try it again or <a href="/ava/user/auth_userpassword/pwrecover">reset your Password</a>.</p>
+			<p>Username or Password was wrong. Please try it again or <a href="/user/auth_userpassword/pwrecover">reset your Password</a>.</p>
 		</div>
 	{% endif %}
 
-	<form method="POST" action="/ava/user/auth_userpassword/login">
+	<form method="POST" action="/user/auth_userpassword/login">
 		<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
 
 		<div class="input-group">
@@ -30,6 +30,6 @@
 	</form>
 
 	{% if not req.get("disableGoogle") %}
-		<a class="btn btn--google" href="/ava/user/auth_googleaccount/login">Or Login with Google…</a>
+		<a class="btn btn--google" href="/user/auth_googleaccount/login">Or Login with Google…</a>
 	{% endif %}
 {% endblock %}

@@ -4,7 +4,7 @@
 	{% if action == "otp" %}
 		<h1 class="headline">OTP</h1>
 
-		<form action="/ava/user/f2_timebasedotp/otp" method="POST" class="">
+		<form action="/user/f2_timebasedotp/otp" method="POST" class="">
 			<input name="skey" type="hidden" value="{{ getSecurityKey() }}">
 
 			<div class="msg msg--error has-icon {{ "hide" if not secondFactorFailed }}">

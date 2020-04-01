@@ -10,21 +10,25 @@
 {% extends "viur_base.html" %}
 {% from "macros/skelview.html" import SkelView %}
 
-{% block content %}
-	<h1 class="headline">{{ moduleName() }}: Entry {{ skel.key }} successfully created</h1>
+{% block viewerFrame %}
+	<div class="vi-viewer-frame" role="main">
+		<div class="vi-viewer-pane has-single-child is-active">
+			<h1 class="headline">{{ moduleName() }}: Entry {{ skel.key }} successfully created</h1>
 
-	<div class="alertGroup">
-		<div class="alert alert--success has-icon">
-			{{ embedSvg("icon-check") }}
-			<h4 class="alert-headline">Entry has been successfully created!</h4>
-			<p>
-				<a class="btn btn--primary" href="/{{ moduleName() }}/view/{{ skel.key }}">
-					View entry
-				</a>
-			</p>
+			<div class="popup popup--center popup--local msg msg--success is-active">
+				{{ embedSvg("icon-check") }}
+				<div class="msg-content">
+					<h4 class="msg-headline">Entry has been successfully created!</h4>
+					<p>
+						<a class="btn" href="/{{ moduleName() }}/view/{{ skel.key }}">
+							View entry
+						</a>
+					</p>
+				</div>
+			</div>
+
+			{{ SkelView(skel) }}
 		</div>
 	</div>
-
-	{{ SkelView(skel) }}
-{% endblock %}
+{% endblock viewerFrame %}
 

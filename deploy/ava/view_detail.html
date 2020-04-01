@@ -6,12 +6,28 @@
 {% extends "viur_base.html" %}
 {% from "macros/skelview.html" import SkelView %}
 
-{% block content %}
-	<h1 class="headline">View {{ moduleName() }}</h1>
-
-	{{ SkelView(skel, drillDepth=99, drillFull=True, options={"showHidden": True, "keyLink": "/ava/$(module)/view/$(key)?style=detail"}) }}
-
-	<div>
-		<a class="btn btn--primary" href="/{{ moduleName() }}/view/{{ skel.key }}">View</a>
+{% block currentModule %}
+	<div class="vi-tb-currentmodul item">
+		<div class="item-image">
+			<i class="i">
+				{{ embedSvg('test') }}
+			</i>
+		</div>
+		<div class="item-content">
+			<div class="item-headline">{{ moduleName() }}</div>
+		</div>
 	</div>
-{% endblock %}
+{% endblock currentModule %}
+
+{% block viewerFrame %}
+	<div class="vi-viewer-frame" role="main">
+		<div class="vi-viewer-pane has-single-child is-active">
+			<div class="vi-actionbar bar">
+				<a class="btn btn--primary" href="/ava/{{ moduleName() }}/view/{{ skel.key }}">View</a>
+			</div>
+
+			{{ SkelView(skel, drillDepth=99, drillFull=True, options={"showHidden": True, "keyLink": "/ava/$(module)/view/$(key)?style=detail"}) }}
+
+		</div>
+	</div>
+{% endblock viewerFrame %}

@@ -1,20 +1,48 @@
 {% extends "viur_base.html" %}
 {% from "macros/skelview.html" import SkelView %}
 
-{% block content %}
-	<h1 class="headline">Delete entry {{ skel.key }} from {{ moduleName() }}</h1>
+{% block currentModule %}
+	<div class="vi-tb-currentmodul item">
+		<div class="item-image">
+			<i class="i">
+				{{ embedSvg('test') }}
+			</i>
+		</div>
+		<div class="item-content">
+			<div class="item-headline">{{ moduleName() }}</div>
+			<div class="item-subline">{{ skellist|length }} entries</div>
+		</div>
+	</div>
+{% endblock currentModule %}
 
-	<form method="POST" action="/ava/{{ moduleName() }}/delete">
-		<p>
-			Do you really want to delete this entry?
-		</p>
+{% block viewerFrame %}
+	<div class="vi-viewer-frame" role="main">
+		<div class="vi-viewer-pane has-single-child is-active">
+			<div class="vi-actionbar bar">
+				<div class="input-group">
+					<a class="btn" href="/ava/{{ moduleName() }}/list">List</a>
+					<a class="btn" href="/ava/{{ moduleName() }}/view/{{ skel.key }}?style=detail">Details</a>
+					<a class="btn btn--edit" href="/ava/{{ moduleName() }}/edit/{{ skel.key }}">Edit</a>
+					<a class="btn btn--danger" href="/ava/{{ moduleName() }}/view/{{ skel.key }}?style=delete">Delete</a>
+				</div>
+			</div>
+			<h1 class="headline">Delete entry {{ skel.key }} from {{ moduleName() }}</h1>
 
-		{{ SkelView(skel) }}
-		<input type="hidden" name="key" value="{{ skel.key }}">
-		<input type="hidden" name="skey" value="{{ getSecurityKey() }}">
+			{{ SkelView(skel) }}
+			<form class="popup popup--center popup--local box is-active" method="POST" action="/ava/{{ moduleName() }}/delete">
+				<div class="box-head box--content">
+					Do you really want to delete this entry?
+				</div>
 
-		<input type="submit" class="btn btn--danger" value="Yes">
-		<a class="btn" href="/ava/{{ moduleName() }}/list">No</a>
-	</form>
+				<input type="hidden" name="key" value="{{ skel.key }}">
+				<input type="hidden" name="skey" value="{{ getSecurityKey() }}">
+				<div class="box-foot box--content">
+					<input type="submit" class="btn btn--danger" value="Yes">
+					<a class="btn" href="/ava/{{ moduleName() }}/list">No</a>
+				</div>
+			</form>
+			<div class="popup-overlay"></div>
 
-{% endblock %}
+		</div>
+	</div>
+{% endblock viewerFrame %}
